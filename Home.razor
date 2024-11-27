@@ -1,0 +1,23 @@
+﻿@page "/login"
+@using Login.Models;
+@inject NavigationManager NavigationManager
+
+<PageTitle>Login</PageTitle>
+
+<EditForm method="post" Model="_Login" OnValidSubmit="LoginForm" FormName="Login" Enhance>
+    <label for="username">Username:</label>
+    <InputText id="username" @bind-Value="_Login.uname"/>
+<label for="password">Password</label>
+    <InputText type="password" id="password" @bind-Value="_Login.pw"/>
+    <button type="submit" class="btn btn-primary">Login</button>
+</EditForm>
+
+@code
+{
+    [SupplyParameterFromForm] private Login _Login { get; set; } = new();
+
+    public async Task LoginForm()
+    {
+        NavigationManager.NavigateTo("/User");
+    }
+}

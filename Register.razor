@@ -1,0 +1,25 @@
+@page "/register"
+@using Login.Models;
+@inject NavigationManager NavigationManager
+
+<PageTitle>Register</PageTitle>
+
+<EditForm method="post" Model="Register2" OnValidSubmit="RegisterForm" FormName="Register" Enhance>
+    <label for="username">Username:</label>
+    <InputText id="username" @bind-Value="Register2.username"/>
+    <label for="email">Email:</label>
+    <InputText id="email" @bind-Value="Register2.email"/>
+    <label for="password">Password</label>
+    <InputText type="password" id="password" @bind-Value="Register2.password"/>
+    <button type="submit" class="btn btn-primary">Register</button>
+</EditForm>
+
+@code
+{
+    [SupplyParameterFromForm] private Register2 Register2 { get; set; } = new();
+
+    public async Task RegisterForm()
+    {
+        NavigationManager.NavigateTo("/User");
+    }
+}
